@@ -34,10 +34,10 @@
 	$.cron.busy = false;
 	//This is the tab, where all the normal event handlers are called from
 	$.cron.tab = { onSecond : [],
-									onMinute : [],
-									onHour : [],
-									onDay : []
-								};
+				   onMinute : [],
+				   onHour : [],
+				   onDay : []
+				  };
 	$.cron.others = {};
 	//Main function for dispatching events to the functions
 	$.cron.main =  function(){
@@ -162,10 +162,10 @@
 					label = Math.random()*d;
 				}
 				$.cron.others[label] = {'caller': func,
-																		'next':null,
-																		'timing': d,
-																		'label': label
-																		};
+									   'next':null,
+									   'timing': d,
+									   'label': label
+									   };
 			break;
 		}
 		if (!label){
