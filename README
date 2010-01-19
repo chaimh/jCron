@@ -1,0 +1,61 @@
+Ok, so I needed an easier way to do setTimeout/setInterval... if I had bothered to google for it I would have found the excellent jQuery Timers plugin, however I didn't and made one myself.
+
+Ok, so, the good...
+
+Ability to programatically switch all timers on and off
+Built in labels for every second/minute/hour/day
+Syntax for nicer timings e.g. 3s, 2h etc etc...
+Small footprint, in both size and memory
+Event skipping if something takes a little too long
+Errors thrown from functions are caught and are removed from future calls
+
+and the bad...
+
+Can only do timings of one second or more...sorry, IE started to go a little crazy.
+Not amazingly well documented.
+Can cause unload issues, (this hasn't been a problem in quite a while)
+
+Ok, so now all the 'features' are out of the way, what I can assume is you are not reading this anymore, but anyway here goes the little tutorial.
+
+Step 1
+download the plugin from here
+
+Step 2
+ummm... read this bit
+
+Ok, so once you've got the file and it is included in your file, call:
+
+$.cron();
+
+and basically, jCron will just run, if you want it to be stopped on page load, at the top of the script, just do:
+
+$(document).ready(function(){
+ $.cron.on = false;
+});
+
+..before the $.cron(), and set 'on' to true to start it again.
+
+Once you have it on, then you need to get some functionality, to do that you use
+
+$(document).ready(function(){
+ $.cron.register(timing, function, label);
+});
+
+timing is the number of seconds.minutes/hours you wish to have the plugin wait, you are given four convenience timings which are 'onSecond', 'onMinute', 'onHour' and 'onDay'
+the non-standard timings can be set in the format '/^\d[s|m|h|d]$/', so essentially a number followed by the first letter of second, hour, minute or day.
+Function is the callback function you want to use, shouldn't need to bother you here, it doesn't require any arguments and supplies none.
+
+Label is an optional argument for the non-standard timings.
+
+If you want to set a function to be called once, just call..
+
+$.cron.once(timing, function(){
+//your code here
+})
+
+To deregister a function call..
+
+$.cron.deRegister(labelOrReturnValue);
+
+This takes either the custom label you supplied, the return value from the register function, or the onSecond (etc) handlers.
+That should be all you need to get started, feel free to hack about with it as much as you want, any problems shoot me an email at matt [at] made_by_lamp dot com.
